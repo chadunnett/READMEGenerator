@@ -1,8 +1,8 @@
-# <${title}>
+# README Generator
 
 ## Description
 
-${description}
+Generates a README.md file using whatever is input
 
 ## Table of Contents
 
@@ -15,34 +15,14 @@ ${description}
 
 ## Installation
 
-${installation}
+    npm init
+    npm i inquirer@8.2.4
+    node index.js
 
 ## Usage
 
-${usage}
+Makes a README file based on input.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
-
-## Credits
-
-${answers.contributions}
-
-## License
-
-${license}
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-
-## Tests
-
-${tests}
-
-## Questions
-
-${questions}
+![](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)
+![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)

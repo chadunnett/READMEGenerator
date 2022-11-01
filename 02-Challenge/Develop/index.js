@@ -1,18 +1,19 @@
 // TODO: Include packages needed for this application
 
 // TODO: Create an array of questions for user input
-const questions = [];
+// const questions = [];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+// function init() {}
 
 // Function call to initialize app
-init();
+// init();
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown');
 inquirer
   .prompt([
     {
@@ -36,8 +37,9 @@ inquirer
         name: 'usage',
       },
       {
-        type: 'input',
+        type: 'list',
         message: 'What license to use?',
+        choices : ["MIT","two","three"],
         name: 'license',
       },
       {
@@ -55,51 +57,64 @@ inquirer
           message: 'What are the questions?',
           name: 'questions',
         },
+        {
+          type: 'input',
+          message: 'What is your GitHub username?',
+          name: 'github',
+        },
+        {
+          type: 'input',
+          message: 'What is your email?',
+          name: 'email',
+        },
   ])
 .then((answers) => {
-    const markdown = `# <${answers.title}>
+  generateMarkdown(answers);
+    const markdown = `# ${answers.title}
 
-    ## Description
+## Description
     
-    ${answers.description}
+${answers.description}
     
-    ## Table of Contents
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+- [Tests](#tests)
+- [Questions](#questions)
+## Installation
+${answers.installation}
     
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Credits](#credits)
-    - [License](#license)
-    - [Tests](#tests)
-    - [Questions](#questions)
+## Usage
     
-    ## Installation
+${answers.usage}
     
-    ${answers.installation}
+## Credits
     
-    ## Usage
+${answers.contributions}
     
-    ${answers.usage}
+## License
     
-    ## Credits
+${answers.license}
     
-    ${answers.contributions}
-    
-    ## License
-    
-    ${answers.license}
-    
-    ## How to Contribute
+  ## How to Contribute
     
     If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
     
-    ## Tests
+## Tests
     
-    ${answers.tests}
+${answers.tests}
     
-    ## Questions
+## Questions
     
-    ${answers.questions}`
-    fs.writeFile('README,md',markdown, (err) =>
+${answers.questions}
+
+https://github.com/${answers.github}
+
+email : ${answers.email}
+`
+    fs.writeFile('README.md',markdown, (err) =>
   err ? console.error(err) : console.log('Success!')
 );
 });
